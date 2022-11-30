@@ -1,0 +1,22 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--gunmetal);
+  height: 5vh;
+  padding: 1rem;
+  z-index: 1000;
+  position: sticky;
+  top: 0;
+}
+
+ul.page-links {
+  display: flex;
+  gap: 1rem;
+}
+
+ul.page-links a,
+ul.page-links a:visited {
+  text-decoration: none;
+  color: var(--burnt-sienna);
+}
