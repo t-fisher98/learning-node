@@ -1,8 +1,7 @@
 .introduction {
   text-align: center;
   width: 100%;
-  height: 30vh;
-  padding: 1rem;
+  padding: 5rem 1rem;
   background-color: var(--light-gray);
   display: flex;
   justify-content: center;
@@ -11,7 +10,6 @@
 
 .main-navigation {
   width: 100%;
-  height: 65vh;
   background-color: var(--burnt-sienna);
   display: flex;
   justify-content: center;
@@ -19,27 +17,27 @@
 }
 
 .link-grid {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template: 
+    "a b c"
+  ;
+  place-items: center;
   gap: 2rem;
-  padding: 3em 0;
-  max-width: 50vw;
+  padding: 5rem 2rem;
 }
 
 .link-grid-link {
-  width: 15rem;
-  height: 15rem;
+  width: 14rem;
+  height: 14rem;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--gunmetal);
+  transition: all 0.25s ease-in-out;
 }
 
 .link-grid-link:hover {
   transform: scale(1.10);
-  transition: all 0.20s ease-out;
 }
 
 .link-grid-link > a {
@@ -51,4 +49,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: 800px) {
+  .link-grid {
+    grid-template: 
+      "a b"
+    ;
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .link-grid-link {
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .link-grid-link > a {
+    font-size: 1.25rem;
+  }
 }

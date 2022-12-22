@@ -1,9 +1,10 @@
-import getCurrentDate from '../js/getCurrentDate.js'
+import getCurrentDate from '../modules/getCurrentDate.js'
 
 const oneSecond = 1000;
 
 let date;
 let sessionTime = 0;
+let countdownName;
 let countdownDate;
 let countdownTime;
 
@@ -12,13 +13,22 @@ sessionTimer.textContent = sessionTime;
 
 let newContentBody = document.querySelector('.countdown-creator-container');
 
+let countdownCreatorForm = document.querySelector('#countdown-creator')
+
 let surpriseText = document.querySelector('#surprise-text')
 
 let countdownCurrentDate = document.querySelector('#countdown-current-date')
 
+let countdownNameInput = document.querySelector('#countdown-name')
+
 let countdownDateInput = document.querySelector('#countdown-date')
 
 let countdownTimeInput = document.querySelector('#countdown-time')
+
+countdownNameInput.addEventListener('change', (e) => {
+  countdownName = e.currentTarget.value;
+  console.log(countdownName);
+})
 
 countdownDateInput.addEventListener('change', (e) => {
   countdownDate = e.currentTarget.value;
@@ -30,12 +40,13 @@ countdownTimeInput.addEventListener('change', (e) => {
   console.log(countdownTime);
 })
 
+countdownCreatorForm.addEventListener('submit', createCountdown);
+
 const updateTimer = () => {
   sessionTime++;
   let minutes = Math.floor(sessionTime / 60);
   let seconds = sessionTime - (minutes * 60)
   sessionTimer.textContent = `${minutes} minutes(s) and ${seconds} second(s)`;
-  setTimeout(updateTimer, oneSecond);
 }
 
 const displayNewContent = () => {
@@ -47,8 +58,6 @@ const displayNewContent = () => {
   setTimeout(() => {
     surpriseText.textContent = "Create a Countdown"
   }, 500)
-  
-  displayCurrentDate();
 }
 
 const displayCurrentDate = () => {
@@ -60,11 +69,16 @@ const displayCurrentDate = () => {
   let year = date.getFullYear();
   let time = date.toLocaleTimeString();
 
-  countdownCurrentDate.textContent = `The current date is ${month} ${day}, ${year} at ${time}` 
-
-  setTimeout(displayCurrentDate, oneSecond)
+  countdownCurrentDate.textContent = `The current date is ${month} ${day}, ${year} at ${time}`
 }
 
-setTimeout(displayNewContent, oneSecond);
+function createCountdown(e) {
+  e.preventDefault();
+  console.log(e.target);
+}
+
+setTimeout(displayNewContent, 5000);
+setInterval(updateTimer, oneSecond);
+setInterval(displayCurrentDate, oneSecond);
 
 updateTimer();
